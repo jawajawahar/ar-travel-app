@@ -381,29 +381,9 @@ export default function ARView({ onBack }: { onBack?: () => void }) {
         }}
       />
 
-      {/* ── status bar (z:50) ── */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-5 pt-4 pb-2">
-        <span className="text-white text-sm font-semibold tabular-nums">9:41</span>
-        <div className="flex items-center gap-1.5">
-          <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
-            {[0,1,2,3].map(i => (
-              <rect key={i} x={i * 4} y={12 - 3 * (i + 1)} width="3" height={3 * (i + 1)}
-                rx="0.8" fill="white" opacity={0.3 + i * 0.23} />
-            ))}
-          </svg>
-          <span className="text-white text-xs font-semibold ml-0.5">5G</span>
-          <div className="flex items-center gap-0.5 ml-1">
-            <div className="w-6 h-3 rounded-sm border border-white/50 flex items-center px-0.5">
-              <div className="h-1.5 rounded-[1px] flex-1" style={{ background: '#4ADE80' }} />
-            </div>
-            <div className="w-1 h-2 rounded-r-sm bg-white/50" />
-          </div>
-        </div>
-      </div>
-
-      {/* ── filter bar (z:50, top:60px — clears Dynamic Island / camera notch) ── */}
+      {/* ── filter bar (z:50) ── */}
       <div className="absolute left-0 right-0 z-50 flex items-center gap-2 px-4 overflow-x-auto"
-        style={{ top: 60 }}>
+        style={{ top: 16 }}>
         <button
           onClick={onBack}
           className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"

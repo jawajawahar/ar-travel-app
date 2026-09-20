@@ -220,25 +220,7 @@ export default function HomeScreen({ onOpenAR }: { onOpenAR: () => void }) {
     <div className="relative w-full h-full" style={{ background: T.mist, fontFamily: 'Inter,sans-serif' }}>
       <div className="h-full overflow-y-auto pb-32" style={{ scrollbarWidth: 'none' }}>
 
-        {/* ── status bar ── */}
-        <div className="flex items-center justify-between px-5 pt-5">
-          <span className="text-sm font-semibold tabular-nums" style={{ color: T.ink }}>9:41</span>
-          <div className="flex items-center gap-2">
-            <div className="flex items-end gap-px h-3">
-              {[4,6,8,11].map((h,i) => (
-                <div key={i} className="w-[3px] rounded-sm"
-                  style={{ height: h, background: i < 3 ? T.ink : '#CBD5E1' }} />
-              ))}
-            </div>
-            <span className="text-xs font-semibold" style={{ color: T.ink }}>5G</span>
-            <div className="flex items-center gap-0.5">
-              <div className="h-3 w-5 rounded-[3px] border flex items-center p-[2px]"
-                style={{ borderColor: T.slate }}>
-                <div className="flex-1 h-full rounded-[1px]" style={{ background: '#22C55E' }} />
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* ── top nav ── */}
         <div className="flex items-center justify-between px-4 mt-4">
