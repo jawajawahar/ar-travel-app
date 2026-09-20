@@ -11,8 +11,10 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Code with Git LFS
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
