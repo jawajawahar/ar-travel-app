@@ -1,0 +1,10 @@
+{
+  "description": "Discover nearby attractions with an augmented reality view, enhancing your travel experience by providing real-time information and navigation.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
