@@ -29,7 +29,7 @@ jobs:
       - name: Sync Capacitor iOS
         run: npx cap sync ios
 
-      - name: Resolve Xcode Dependencies & Build Archive
+      - name: Compile iOS App with Xcode
         run: |
           cd ios/App
           xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
@@ -37,22 +37,23 @@ jobs:
             -scheme App \
             -configuration Release \
             -destination 'generic/platform=iOS' \
-            -archivePath build/App.xcarchive \
-            archive \
+            -derivedDataPath build \
+            build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
+            CODE_SIGN_IDENTITY="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES
 
-      - name: Package into .IPA File
+      - name: Package into .IPA File for Sideloadly
         run: |
-          cd ios/App/build
+          cd ios/App/build/Build/Products/Release-iphoneos
           mkdir -p Payload
-          cp -r App.xcarchive/Products/Applications/App.app Payload/
+          cp -r App.app Payload/
           zip -r AR-Travel-App.ipa Payload
 
       - name: Upload IPA to GitHub Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: AR-Travel-App-IPA
-          path: ios/App/build/AR-Travel-App.ipa
+          path: ios/App/build/Build/Products/Release-iphoneos/AR-Travel-App.ipa
           retention-days: 7
