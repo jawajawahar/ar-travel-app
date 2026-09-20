@@ -21,21 +21,20 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Web Assets (Vite)
         run: npm run build
 
-      - name: Add & Sync Capacitor iOS
-        run: |
-          npx cap add ios || true
-          npx cap sync ios
+      - name: Sync Capacitor iOS
+        run: npx cap sync ios
 
       - name: Build Xcode Archive
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace -scheme App \
+          xcodebuild -project App.xcodeproj -scheme App \
             -configuration Release \
+            -sdk iphoneos \
             -derivedDataPath build \
             -archivePath build/App.xcarchive \
             archive \
