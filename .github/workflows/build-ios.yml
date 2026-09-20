@@ -8,7 +8,7 @@ on:
 jobs:
   build-ios-ipa:
     name: Build Unsigned IPA
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - name: Checkout Code
@@ -29,18 +29,19 @@ jobs:
       - name: Sync Capacitor iOS
         run: npx cap sync ios
 
-      - name: Build Xcode Archive
+      - name: Resolve Xcode Dependencies & Build Archive
         run: |
           cd ios/App
-          xcodebuild -project App.xcodeproj -scheme App \
+          xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
+          xcodebuild -project App.xcodeproj \
+            -scheme App \
             -configuration Release \
-            -sdk iphoneos \
-            -derivedDataPath build \
+            -destination 'generic/platform=iOS' \
             -archivePath build/App.xcarchive \
             archive \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
 
       - name: Package into .IPA File
         run: |
